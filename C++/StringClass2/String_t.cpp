@@ -340,7 +340,7 @@ char * String_t::operator() (const unsigned int start,const unsigned int count)c
        return NULL;
    }
    temp=new char[count+1];
-   for(i=start;i<=start+count;i++){
+   for(i=start;i<start+count;i++){
        temp[j]=this->str[i];
        j++;
    }
