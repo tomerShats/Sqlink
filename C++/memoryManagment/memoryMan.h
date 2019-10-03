@@ -17,8 +17,10 @@ class memManager_t{
              m_current=cur;
              
              
-        }
-        /*throw i;*/
+        }else{
+           throw i;
+        }  
+        
        
     };
     bool isEmpty(){
