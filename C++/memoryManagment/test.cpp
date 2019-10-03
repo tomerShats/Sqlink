@@ -12,6 +12,7 @@ void memTest(memManager_t * mm){
   int z=4;
   int w=8;
   long test;
+ size_t tr=20;
    cout<<"the size actual :"<<mm->getActualSize()<<endl;
   mm->writeM(&k,sizeof(int));
   mm->readM(&w,sizeof(int),0);
@@ -29,11 +30,11 @@ void memTest(memManager_t * mm){
   cout<<"the number:"<<w<<endl;
   cout<<"the index:"<<mm->getCurrent()<<endl;
   cout<<"the actual capacity:"<<mm->getActualSize()<<endl;
-  /*try{
-    mm->setCurrent(15);
+  try{
+    mm->setCurrent(tr);
   }catch(int i){
     cout<<"your size not good"<<endl;
-  }*/
+  }
   
 
 }   
