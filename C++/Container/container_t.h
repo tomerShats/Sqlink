@@ -84,7 +84,7 @@ class tContainer_t{
     T * operator[] (unsigned int i){
             vector<T *> v;
            if(typeid(v)==typeid(cont)) {
-                  return cont[i];
+                  return (*(vector<T*>*)&cont)[i];
            }else{
                throw i;
            }
