@@ -92,7 +92,7 @@ template <class T,class C >
                 }
                 break;
                 }
-               /* case 9: {
+                case 9: {
                    
                    unsigned int i;
                    T * n;
@@ -106,7 +106,7 @@ template <class T,class C >
                 }
          
                 break;
-                }*/
+                }
                  case 10: {
 
                   c->removeAll();
