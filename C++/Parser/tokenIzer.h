@@ -4,9 +4,9 @@
 
 #include <string>
 #include <vector>
-#include <set>
 # include <iostream>
 # include <string>
+# include <iterator>
 
 
 
@@ -16,25 +16,29 @@ class tokenizer_t
 {
 	public:
 	
-	tokenizer_t(): m_tokensDelimiters("()[]{};<>=+-*&"),m_blankDelimiters(" \t\n\r\v\f"){
+	tokenizer_t(){};
        
-    };
+    
     ~tokenizer_t(){};
 	
 	void Tokenize(const string& _str);
 
 	
 	size_t GetSize() const{return m_tokens.size();};
+	vector<string> & getTokenVector(){return m_tokens;	}
 	
-	const string& GetNextToken(); 
+	
+	static string&  getTokensDelimiters(){return m_tokensDelimiters;}
+	static void setTokensDelimiters(const string & del){
+		m_tokensDelimiters=del;
+	}
 
 	private:
 	
 	tokenizer_t(const tokenizer_t& _t);
 	tokenizer_t& operator=(const tokenizer_t& _t);
-	const string m_tokensDelimiters;
-	const string m_blankDelimiters;
-	const string m_emptyString;
+	static string m_tokensDelimiters;
+	
 	
 		
 	vector<string> m_tokens;
