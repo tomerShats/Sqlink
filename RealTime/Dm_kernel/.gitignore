@@ -1,0 +1,9 @@
+*.ko
+*.o
+putget
+*.mod.c
+.cache.mk
+*.cmd
+modules.order
+Module.symvers
+.tmp_versions

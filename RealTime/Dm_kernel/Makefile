@@ -10,6 +10,10 @@ KDIR?=/lib/modules/$(shell uname -r)/build
 # You could also use W=2 and W=3 for more warnings but most kernel headers
 # fail those...
 W?=1
+
+.PHONY: all
+all: modules putget
+
 .PHONY: modules
 modules:
 	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) W=$(W) modules
@@ -17,16 +21,16 @@ modules:
 clean:
 	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) clean
 	rm -f *.stamp
+	rm -f putget
 
-.PHONY: putget
-putget: putGet.c
-	gcc -pthread -o $@ $<
-	./putget
+putget: putget.c
+	gcc -Wall -Werror -pedantic -pthread -o $@ $<
 
-.PHONY: insrmmod
+.PHONY: test_insrmmod
 	VARIABLE := number
-insrmmod:
-	for number in $$(seq 1 100);\
+Q:=@
+test_insrmmod:
+	$(Q)for number in $$(seq 1 10);\
 	do \
 	sudo insmod qm.ko;\
 	sleep 0.1;\
@@ -35,8 +39,8 @@ insrmmod:
 	echo $$number;\
 	done
 
-.PHONY: test
-test: insrmmod insmod putget
+.PHONY: test_all
+test_all: insrmmod insmod putget
 
 .PHONY: insmod
 insmod: 
@@ -50,6 +54,3 @@ rmmod:
 	
 .PHONY: remod
 remod: rmmod insmod
-	
-
-
